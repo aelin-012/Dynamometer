@@ -1,0 +1,23 @@
+%Amplifier
+g1 = 100
+
+%Valve
+num1 = 0.13;
+den1 = [3 1];
+g2 = tf(num1,den1)
+
+%Actuator
+num2 = 0.0417;
+den2 = conv([1 0],[1 1.667]);
+g3 = tf(num2,den2)
+
+g4 = g1*g2*g3;
+g = zpk(g4)
+
+
+%Load Cell
+num3 = 1.76*10^9;
+den3 = [1 294000 1.76*10^9];
+h = tf(num3,den3)
+
+controlSystemDesigner();
